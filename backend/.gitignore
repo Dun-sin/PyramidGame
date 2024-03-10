@@ -1,0 +1,7 @@
+node_modules/
+build/
+.env
+**/.DS_Store
+yarn-error.log
+coverage/
+src/swagger_output.json
