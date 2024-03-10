@@ -7,16 +7,12 @@
     "dev": "npm run nodemon",
     "start": "export APP_ENV=production; node -r ts-node/register/transpile-only -r tsconfig-paths/register -r dotenv/config build/index.js",
     "build": "tsc",
-    "predev": "npm run swagger",
-    "prebuild": "npm run swagger",
     "nodemon": "nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' -r ts-node/register/transpile-only -r tsconfig-paths/register -r dotenv/config --exec ts-node src/index.ts",
     "migrate-mongo": "set -o allexport; source .env set; +o allexport; migrate-mongo",
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint src/**/*.ts --fix",
     "prettier": "prettier --check src/**/*.ts",
-    "prettier:fix": "prettier --write src/**/*.ts",
-    "prepare": "husky install",
-    "swagger": "ts-node src/swagger.ts"
+    "prettier:fix": "prettier --write src/**/*.ts"
   },
   "author": "Dun-sin",
   "license": "ISC",
