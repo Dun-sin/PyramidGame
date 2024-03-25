@@ -1,11 +1,22 @@
 import { Document, Schema, model } from 'mongoose'
 
+export interface Player {
+  player: { id: string; name: string }
+  votes: string[]
+  voted: boolean
+}
 export interface IGame {
   name: string
   rules: string[]
-  admin: string
-  players: string[]
-  result: Record<string, { grade: string; players: string[] }>
+  admin: { id: string; name: string }
+  players: Player[]
+  result: {
+    A: { id: string; name: string; vote: number }[]
+    B: { id: string; name: string; vote: number }[]
+    C: { id: string; name: string; vote: number }[]
+    D: { id: string; name: string; vote: number }[]
+    F: { id: string; name: string; vote: number }[]
+  }
   expires: Date
   started: boolean
   code: string
@@ -27,14 +38,26 @@ const schema = new Schema(
       type: [String],
       required: true,
     },
-    admin: { type: String, ref: 'User', required: true, unique: true },
-    players: [{ type: String, ref: 'User' }],
-    result: {
-      type: Map,
-      of: {
-        grade: { type: String, enum: ['A', 'B', 'C', 'D', 'E', 'F'] },
-        players: [{ type: String, ref: 'User' }],
+    admin: {
+      id: { type: String, ref: 'User', unique: true, required: true },
+      name: { type: String, required: true },
+    },
+    players: [
+      {
+        player: {
+          id: { type: String, ref: 'User', unique: true, required: true },
+          name: { type: String, unique: true, required: true },
+        },
+        votes: [{ type: String, ref: 'User' }],
+        voted: { type: Boolean, default: false },
       },
+    ],
+    result: {
+      A: [{ id: { type: String, ref: 'User' }, name: String, vote: Number }],
+      B: [{ id: { type: String, ref: 'User' }, name: String, vote: Number }],
+      C: [{ id: { type: String, ref: 'User' }, name: String, vote: Number }],
+      D: [{ id: { type: String, ref: 'User' }, name: String, vote: Number }],
+      F: [{ id: { type: String, ref: 'User' }, name: String, vote: Number }],
     },
     expires: { type: Date, required: true },
     started: { type: Boolean, default: false },

@@ -1,7 +1,8 @@
-import mongoose from 'mongoose'
-import app from './app'
 import { APP_PORT, DB_NAME, DB_SERVER } from '@/config/config'
+
+import app from './app'
 import logger from './config/logger'
+import mongoose from 'mongoose'
 
 let dbURI: string = `${DB_SERVER}${DB_NAME}`
 

@@ -8,7 +8,7 @@ const router = express.Router()
 
 router.get('/:id', async (req, res, next) => {
   try {
-    const user = await User.findOne({ uid: req.params.id })
+    const user = await User.findOne({ uid: req.params.id }).populate('gamePlaying', '-updatedAt -createdAt -__v ')
     if (!user) throw new ApiError(httpStatus.NOT_FOUND, 'User not found')
     res.status(httpStatus.OK).json(user)
   } catch (e) {
@@ -26,7 +26,7 @@ router.post('/', async (req, res, next) => {
     }
     const user = new User({ uid })
     await user.save()
-    res.json(user)
+    res.status(httpStatus.OK).json(user)
   } catch (e) {
     next(e)
   }
@@ -36,9 +36,9 @@ router.patch('/:id', async (req, res, next) => {
   try {
     const user = await User.findOne({ uid: req.params.id })
     if (!user) throw new ApiError(httpStatus.NOT_FOUND, 'User not found')
-    const { username } = req.body
-    if (username) {
-      user.username = username
+    const { name } = req.body
+    if (name) {
+      user.name = name
     }
 
     await user.save()

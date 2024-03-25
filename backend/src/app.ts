@@ -1,17 +1,24 @@
 import { APP_PREFIX_PATH, IS_TEST } from '@/config/config'
+import { Server, Socket } from 'socket.io'
 import { errorConverter, errorHandler } from './middlewares/error'
 
 import ApiError from './utils/ApiError'
+import CreateGame from './sockets/CreateGame'
+import DeleteGame from './sockets/DeleteGame'
+import JoinGame from './sockets/JoinGame'
+import Vote from './sockets/Vote'
 import compression from 'compression'
 import cors from 'cors'
 import express from 'express'
 import helmet from 'helmet'
+import http from 'http'
 import httpStatus from 'http-status'
 import mongoSanitize from 'express-mongo-sanitize'
 import routes from '@/routes'
-import swaggerUi from 'swagger-ui-express'
 
 const app = express()
+const server = http.createServer(app)
+export const io = new Server(server)
 
 // set security HTTP headers
 app.use(helmet())
@@ -47,4 +54,22 @@ app.use(errorConverter)
 // handle error
 app.use(errorHandler)
 
-export default app
+export interface CustomSocket extends Socket {
+  userId: string
+}
+
+io.on('connection', (socket: CustomSocket) => {
+  console.log('userconnected')
+
+  socket.on('rejoinGame', (code) => {
+    socket.rooms.clear()
+    socket.join(code)
+  })
+
+  CreateGame(socket)
+  JoinGame(socket)
+  Vote(socket)
+  DeleteGame(socket)
+})
+
+export default server
