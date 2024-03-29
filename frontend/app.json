@@ -1,33 +1,47 @@
 {
   "expo": {
-		"name": "Pyramid Game",
-		"slug": "Pyramid Game",
-		"version": "1.0.0",
-		"orientation": "portrait",
-		"icon": "./assets/icon.png",
-		"userInterfaceStyle": "light",
-		"scheme": "pyramidgame",
-		"splash": {
-			"image": "./assets/splash.png",
-			"resizeMode": "contain",
-			"backgroundColor": "#ffffff"
-		},
-		"assetBundlePatterns": ["**/*"],
-		"ios": {
-			"supportsTablet": true,
-			"bundleIdentifier": "com.anonymous0106.pyramidgame"
-		},
-		"android": {
-			"adaptiveIcon": {
-				"foregroundImage": "./assets/pyramid_game_foreground.png",
-				"backgroundColor": "#ffffff"
-			},
-			"package": "com.anonymous0106.pyramidgame"
-		},
-		"web": {
-			"favicon": "./assets/favicon.ico",
-			"bundler": "metro"
-		},
-		"plugins": ["@config-plugins/detox", "expo-router", "expo-font"]
-	}
+    "name": "Pyramid Game",
+    "slug": "pyramid_game",
+    "version": "1.1.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "scheme": "pyramidgame",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.anonymous0106.pyramidgame"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/pyramid_game_foreground.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.anonymous0106.pyramidgame",
+      "versionCode": 5
+    },
+    "web": {
+      "favicon": "./assets/favicon.ico",
+      "bundler": "metro"
+    },
+    "plugins": [
+      "@config-plugins/detox",
+      "expo-router"
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "12151650-d1e8-4bf4-9425-1fa07e2823e1"
+      }
+    }
+  }
 }

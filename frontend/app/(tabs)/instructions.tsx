@@ -16,8 +16,8 @@ const index = () => {
 					How to Play Pyramid Game
 				</Text>
 				<Text className='text-lightest mt-3'>
-					The Pyramid Game is imitating the new korean drama based on a webtoon
-					with the same name called Pyramid Game.
+					The Pyramid Game is imitating the korean drama based on a webtoon with
+					the same name called Pyramid Game.
 				</Text>
 				<Text className='text-lightest mt-3'>
 					In this Game you and your friends get to pick who is the most popular,
@@ -25,13 +25,13 @@ const index = () => {
 				</Text>
 
 				<Text className='text-lightest mt-3'>
-					There are 5 grade, Grade A - F (no E) with A being the most popular
+					There are 4 grades, Grade A - F (no E) with A being the most popular
 					and F being the least.
 				</Text>
 
 				<Text className='text-lightest mt-3'>
 					You can either create a game or join a game with a code, when creating
-					a game both the game name and game rules are optional
+					a game both the game name and game penalities are optional
 				</Text>
 			</View>
 			<View className='w-full items-center justify-center mt-7'>

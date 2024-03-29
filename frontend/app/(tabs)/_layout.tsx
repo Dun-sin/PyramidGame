@@ -23,7 +23,6 @@ export default function TabLayout() {
 				<Tabs.Screen
 					name='index'
 					options={{
-						headerShown: false,
 						title: 'Home',
 						tabBarIcon: ({ color }) => (
 							<Foundation name='home' size={20} color={color} />
@@ -34,7 +33,6 @@ export default function TabLayout() {
 					name='play'
 					options={{
 						title: 'Play',
-						headerShown: false,
 						tabBarIcon: ({ color }) => (
 							<MaterialCommunityIcons
 								name='gamepad-round'
@@ -48,7 +46,6 @@ export default function TabLayout() {
 					name='instructions'
 					options={{
 						title: 'instructions',
-						headerShown: false,
 						tabBarIcon: ({ color }) => (
 							<Entypo name='help-with-circle' size={20} color={color} />
 						),

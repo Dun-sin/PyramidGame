@@ -17,7 +17,8 @@ const index = () => {
 	const [gameModalVisible, setGameModalVisible] = useState(false);
 	const [userModalVisible, setUserModalVisible] = useState(false);
 	const [name, setName] = useState<null | string>(null);
-	const [code, setCode] = useState<null | string>(null);
+  const [code, setCode] = useState<null | string>(null);
+	const [isLoading, setIsLoading] = useState(false);
 
 	const hideGameModal = () => setGameModalVisible(false);
 	const showGameModal = () => {
@@ -35,15 +36,17 @@ const index = () => {
 	const { state, updateCurrentGamePlaying, updateName } = useApp();
 
 	const handleNameSubmit = async () => {
+		if (isLoading)
+			return ToastAndroid.show(`Already submitted`, ToastAndroid.SHORT);
+		setIsLoading(true);
+
 		if (!name) {
-			ToastAndroid.show('Please enter your name', ToastAndroid.LONG);
-			return;
+			return ToastAndroid.show('Please enter your name', ToastAndroid.LONG);
 		} else if (name.length < 5) {
-			ToastAndroid.show(
+			return ToastAndroid.show(
 				'Name has to be more than 5 characters',
 				ToastAndroid.LONG,
 			);
-			return;
 		}
 
 		try {
@@ -55,7 +58,13 @@ const index = () => {
 				hideUserModal();
 			}
 		} catch (error) {
+			ToastAndroid.show(
+				'Something went wrong!! If it persists contact the developer',
+				ToastAndroid.LONG,
+			);
 			console.log(error);
+		} finally {
+			setIsLoading(false);
 		}
 	};
 
@@ -97,7 +106,7 @@ const index = () => {
 
 	return (
 		<>
-			<View className='mb-10 w-full px-5'>
+			<View className='mb-5 w-full px-5'>
 				{!state.name && (
 					<View>
 						<Pressable
@@ -175,7 +184,7 @@ const index = () => {
 					/>
 					<Pressable onPress={handleNameSubmit} className='bg-brand mt-2'>
 						<Text className='text-lightest text-center py-2 rounded'>
-							Submit
+							{isLoading ? 'Processing...' : 'Submit'}
 						</Text>
 					</Pressable>
 				</View>

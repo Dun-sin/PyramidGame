@@ -17,7 +17,7 @@ const Result = () => {
 		grade: string,
 	) => {
 		return (
-			<View className='flex flex-row gap-x-3 items-center'>
+			<View className='flex flex-row gap-x-3 items-center' key={grade}>
 				<Text className='text-lightest h-full border-2 border-lightest p-2 rounded-md'>
 					{grade}
 				</Text>
@@ -48,14 +48,14 @@ const Result = () => {
 			<Text className='text-lightest font-semibold text-base'>
 				Result from Previous Game
 			</Text>
-			<View className='flex flex-col gap-y-4 mt-2'>
+			<View className='flex flex-col gap-y-4 mt-2 mr-2'>
 				{result ? (
 					Object.keys(result).map((value) => {
 						const voteInfo = result[value as keyof ResultType];
 						return resultDisplay(voteInfo, value);
 					})
 				) : (
-					<Text>
+					<Text className='text-lightest'>
 						You haven't played any game recently, Create or Join a Game
 					</Text>
 				)}

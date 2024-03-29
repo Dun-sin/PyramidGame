@@ -110,7 +110,8 @@ export default function Started() {
 					result && !allGradesEmpty(result) && updateLastGameResult(result);
 				}
 			} catch (error) {
-				ToastAndroid.show('Something went wrong!!', ToastAndroid.BOTTOM);
+        ToastAndroid.show('Something went wrong!!', ToastAndroid.BOTTOM);
+				console.log(error);
 			}
 		};
 

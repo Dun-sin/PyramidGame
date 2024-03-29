@@ -21,7 +21,6 @@ export default function Layout() {
 						options={{
 							headerBackVisible: false,
 							headerShown: false,
-							headerTransparent: true,
 						}}
 					/>
 				</Stack>
