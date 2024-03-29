@@ -1,7 +1,7 @@
 import * as Application from 'expo-application';
 
 import React, { useEffect, useState } from 'react';
-import { RefreshControl, ScrollView, Text, ToastAndroid } from 'react-native';
+import { RefreshControl, ScrollView, ToastAndroid } from 'react-native';
 
 import { ActivityIndicator } from 'react-native-paper';
 import { AxiosError } from 'axios';
@@ -13,7 +13,6 @@ import instance from '@/utils/db';
 import { socket } from '@/context/SocketContext';
 import useApp from '@/context/AppContext';
 import useAuth from '@/context/AuthContext';
-import { useHeaderHeight } from '@react-navigation/elements';
 
 const userId = Application.androidId;
 
@@ -22,8 +21,6 @@ export default function PlayScreen() {
 	const { setIsLoggedIn } = useAuth();
 	const [isLoading, setIsLoading] = useState(true);
 	const [isRefreshing, setIsRefreshing] = useState(false);
-
-	const headerHeight = useHeaderHeight();
 
 	const onRefresh = React.useCallback(() => {
 		setIsRefreshing(true);
@@ -90,6 +87,11 @@ export default function PlayScreen() {
 	return (
 		<Wrapper>
 			<ScrollView
+				contentContainerStyle={{
+					flex: 1,
+					alignItems: 'center',
+					justifyContent: 'center',
+				}}
 				refreshControl={
 					<RefreshControl refreshing={isRefreshing} onRefresh={onRefresh} />
 				}>
